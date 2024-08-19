@@ -13,39 +13,15 @@ export function Home (){
         <Carousel activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item>
             <img className="d-block w-100"
-                src="https://cdn.discordapp.com/attachments/1273416357014405213/1273416447342805042/awynorv51k1nab947dksutbos.webp?ex=66be88fb&is=66bd377b&hm=d6b5df74b4033e71409e1fe2987c63daab591af8fae7547de97144303122cc7c&"
-                alt="First slide"
-            />
-
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-            <img
-                className="d-block w-100"
-                src="https://cdn.discordapp.com/attachments/1273416357014405213/1273416447342805042/awynorv51k1nab947dksutbos.webp?ex=66be88fb&is=66bd377b&hm=d6b5df74b4033e71409e1fe2987c63daab591af8fae7547de97144303122cc7c&"
-                alt="First slide"
+             src="https://cdn.discordapp.com/attachments/1275126834408849505/1275127749496803440/JotaCar.jpg?ex=66c4c2c2&is=66c37142&hm=a33f7fddef59b67f310a3b1b83e3859672b9bdebe4ac6cebbe5fa571ad630bb8&"
+             alt="JotaCar veículos"
             />
                 <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>JotaCar Veículos</h3>
+                    <p>Compra e venda de carros</p>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
-            <img
-                className="d-block w-100"
-                src="https://cdn.discordapp.com/attachments/1273416357014405213/1273416447342805042/awynorv51k1nab947dksutbos.webp?ex=66be88fb&is=66bd377b&hm=d6b5df74b4033e71409e1fe2987c63daab591af8fae7547de97144303122cc7c&"
-                alt="First slide"
-            />
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
-                </Carousel.Caption>
-            </Carousel.Item>
+            
         </Carousel>
         </>
     )
