@@ -1,6 +1,5 @@
 import { Container, Nav, Navbar} from "react-bootstrap";
-import whatsappIcon from '/sistemas/siteJotaCar/veiculos/src/images/whatsapp.png';
-import instagramIcon from '/sistemas/siteJotaCar/veiculos/src/images/Instagram.png';
+
 
 export function NavBar(){
     return ( 
@@ -29,15 +28,17 @@ export function NavBar(){
                             rel="noopener noreferrer"
                             className="social-icon"
                         >
-                            <img src={whatsappIcon} alt="WhatsApp" className="social-icon-img" />
+                            <img src="https://cdn.discordapp.com/attachments/1275126834408849505/1275243577743769731/whatsapp.png?ex=66c52ea1&is=66c3dd21&hm=18145c04a179e53b1587320310d065f01cd9a43b00f6c46ad2cb5a40e1c822df&" 
+                            alt="WhatsApp" className="social-icon-img" />
                         </a>
                         <a
-                            href="https://www.instagram.com/yourprofile" // Substitua pelo seu perfil do Instagram
+                            href="https://www.instagram.com/jot_acar" // Substitua pelo seu perfil do Instagram
                             target="_blank"
                             rel="noopener noreferrer"
                             className="social-icon"
                         >
-                            <img src={instagramIcon} alt="Instagram" className="social-icon-img" />
+                            <img src="https://cdn.discordapp.com/attachments/1275126834408849505/1275243578045763719/Instagram.png?ex=66c52ea1&is=66c3dd21&hm=22b84829acfe118fbece57daf5eb687a84a107c2962179cfce30ca2578ed7be7&" 
+                            alt="Instagram" className="social-icon-img" />
                         </a>
                     </div>
                 </Container>
