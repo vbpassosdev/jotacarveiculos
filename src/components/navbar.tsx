@@ -23,7 +23,7 @@ export function NavBar(){
  
                     <div className="social-icons">
                         <a
-                            href="https://wa.me/1234567890" // Substitua pelo seu número do WhatsApp
+                            href="https://wa.me/19997027091" // Substitua pelo seu número do WhatsApp
                             target="_blank"
                             rel="noopener noreferrer"
                             className="social-icon"
