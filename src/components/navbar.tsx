@@ -15,7 +15,7 @@ export function NavBar(){
                 </Navbar.Brand>
                     <Nav className="ml-auto">
                         <Nav.Link href="/Home">Home</Nav.Link>
-                        <Nav.Link href="/Catalog">Catalogo</Nav.Link>
+                        <Nav.Link href="/Catalog">Modelos</Nav.Link>
                         <Nav.Link href="/Contato">Contato</Nav.Link>
                         
                     </Nav>

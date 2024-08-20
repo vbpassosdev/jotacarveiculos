@@ -6,7 +6,7 @@ import { Contato } from "./pages/Contato";
 export function Router(){
     return(
         <Routes>
-         <Route path="/Home" element={<Home />} />
+         <Route path="/" element={<Home />} />
          <Route path="/catalog" element={<Catalogo/>} />  
          <Route path="/Contato" element={<Contato/>} />               
         </Routes>
