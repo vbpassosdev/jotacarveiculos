@@ -17,7 +17,7 @@ export function ControlledCarousel() {
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
       {carros.map(item=>(
-        <Carousel.Item>
+        <Carousel.Item className="d-block w-100 custom-carousel-img">
             <img
                 className="d-block w-100"
                 src={item}

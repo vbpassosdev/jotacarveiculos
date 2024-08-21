@@ -65,4 +65,10 @@ form {
   height: auto; /* Mantém a proporção da imagem */
 }
 
+.custom-carousel-img {
+  width: 600px; /* Ajuste o valor conforme necessário */
+  height: 600px; /* Ajuste o valor conforme necessário */
+  object-fit: cover; /* Para ajustar como a imagem se encaixa na área */
+  maxWidth: 100% 
 
+}
