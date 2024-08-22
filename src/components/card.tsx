@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
 export function GroupCard() {
-    const [index, setIndex] = useState(0);
+    const [index] = useState(0);
 
     const carros : string[]=[
         "https://cdn.discordapp.com/attachments/1275126834408849505/1275127749496803440/JotaCar.jpg?ex=66c4c2c2&is=66c37142&hm=a33f7fddef59b67f310a3b1b83e3859672b9bdebe4ac6cebbe5fa571ad630bb8&",
