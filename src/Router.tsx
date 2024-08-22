@@ -5,8 +5,9 @@ import { Contato } from "./pages/Contato";
 export function Router(){
     return(
         <Routes>
+         <Route path="/" element={<Home />} />
          <Route path="/home" element={<Home />} />
-         <Route path="/Contato" element={<Contato/>} />               
+         <Route path="/contato" element={<Contato/>} />               
         </Routes>
     )
 }
