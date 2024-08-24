@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
+
 export function GroupCard() {
     const [index] = useState(0);
 

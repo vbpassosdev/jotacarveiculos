@@ -1,16 +1,21 @@
-import { GroupCard } from '../components/card';
+import { CardList } from '../components/cardList';
 import { ControlledCarousel } from '../components/caurosel';
 
 export function Home (){
     return(
-    <div  className="mb-4">    
-        <div className="mb-4">
-            <ControlledCarousel>
-            </ControlledCarousel>
-        </div>
-        <GroupCard>
-            
-        </GroupCard>
-    </div>
+
+        <><div>
+            <CardList>
+
+            </CardList>
+
+        </div><div className="mb-4">
+                <div className="mb-4">
+                    <ControlledCarousel>
+                    </ControlledCarousel>
+                </div>
+
+
+            </div></>
     )
 }
