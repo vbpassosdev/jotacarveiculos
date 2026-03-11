@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 export function NavBar() {
     return (
@@ -6,13 +7,14 @@ export function NavBar() {
             <Container>
                 <Navbar.Brand href="#home">
                     {/* Adicione o nome ou logo aqui, se necessário */}
-                    Jota Car Veículos
+                    Imagens
                 </Navbar.Brand>
                 <Nav className="ml-auto">
-                    <Nav.Link href="/Home">Home</Nav.Link>
-                    <Nav.Link href="/Carro">Carro</Nav.Link>
-                    <Nav.Link href="/Propaganda">Propaganda</Nav.Link>
-
+                    <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/imagens">Imagens</Nav.Link>
+                    <Nav.Link as={Link} to="/contato">Contato</Nav.Link>
+                </Nav>
+                <Nav className="ml-auto">
                 </Nav>
 
             </Container>

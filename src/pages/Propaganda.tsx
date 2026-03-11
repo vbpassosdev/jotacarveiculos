@@ -19,7 +19,7 @@ export function Propaganda(){
                 <thead>
                     <tr>
                         <th>...</th>
-                        <th>Caminho da Imagem</th>
+                        <th>Foto</th>
                         <th>Imagem</th>
                     </tr>
                 </thead>

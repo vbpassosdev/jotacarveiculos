@@ -7,13 +7,10 @@ import { NavBar } from './components/navbar';
 export function App() {
   
   return (
-    <>
+    <BrowserRouter>
     <NavBar></NavBar>
-    
-    <BrowserRouter>   
       <Router/>
     </BrowserRouter>
-    </>
      )
 }
 

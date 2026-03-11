@@ -1,56 +1,38 @@
-import { createClient } from '@supabase/supabase-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { supabase } from '../supabaseClient';
+import { FALLBACK_IMAGE } from '../utils/image';
 
-// Configuração do Supabase
-
-const supabaseUrl = 'https://rzartyqwolxjochapqpm.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6YXJ0eXF3b2x4am9jaGFwcXBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQzNDQ1MzcsImV4cCI6MjAzOTkyMDUzN30.05yOZiX3luCq0MKNdmRukRiuWhZUujQ8i46RZeC8emc'
-const supabase = createClient(supabaseUrl, supabaseKey)
-
-interface CarroFoto {
+interface Foto {
   id: string;
   idFoto: number;
-  DataInclusao: Date;
-  CaminhoImagem: string;
+  Foto?: string;
+  foto?: string;
+  imageUrl?: string;
 }
 
-// Interface para os dados dos carros
-interface Car {
+interface Produto {
   id: number;
-  Marca: string;
-  Modelo: string;
   Descricao: string;
-  Valor: number;
-  Fabricacao: number;
-  CarrosxFotos: CarroFoto[];  
-
+  Fotos: Foto[];  
 }
-
   
-// Função para buscar os dados dos carros
-async function fetchCars(): Promise<Car[]> {
+// Função para buscar os dados dos produtos
+async function fetchProdutos(): Promise<Produto[]> {
   const { data, error } = await supabase
-    .from('Carros')  // Verifique se 'Carros' é o nome correto da tabela
+    .from('Produto')
     .select(`
-      id, 
-      Marca, 
-      Modelo, 
+      id,  
       Descricao, 
-      Valor, 
-      Fabricacao, 
-      CarrosxFotos (
+      Fotos (
         id, 
         idFoto,
-        DataInclusao, 
-        CaminhoImagem
-      )
+        Foto)
     `);
 
   if (error) {
@@ -63,57 +45,95 @@ async function fetchCars(): Promise<Car[]> {
     return [];
   }
 
-  // Se o tipo de dado retornado for compatível, o casting explícito pode ser feito
-  return data as unknown as Car[]; 
-}
+  const produtos = data as unknown as Produto[];
 
+  return produtos.map((produto) => ({
+    ...produto,
+    Fotos: (produto.Fotos || []).map((foto) => ({
+      ...foto,
+      imageUrl: foto.Foto || FALLBACK_IMAGE,
+    })),
+  }));
+}
 
 
 // Componente 
 export function CardList() {
-  const [cars, setCars] = useState<Car[]>([]);
-
+  const [produtos, setProdutos] = useState<Produto[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const getCars = async () => {
-      const carData = await fetchCars();
-      setCars(carData);
-      setLoading(false);
+    const getProdutos = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const produtoData = await fetchProdutos();
+        setProdutos(produtoData);
+      } catch {
+        setError('Nao foi possivel carregar os produtos no momento.');
+      } finally {
+        setLoading(false);
+      }
     };
 
-    getCars();
+    getProdutos();
   }, []);
 
 
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) {
+    return (
+      <Container>
+        <h1 className="text-center my-4">Imagens</h1>
+        <Row>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <Col key={`skeleton-${index}`} md={4} className="mb-4">
+              <Card className="h-100">
+                <div className="skeleton skeleton-image" />
+                <Card.Body>
+                  <div className="skeleton skeleton-title" />
+                  <div className="skeleton skeleton-text" />
+                  <div className="skeleton skeleton-text short" />
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    );
+  }
+  if (error) return <p>{error}</p>;
 
   return (
     <Container>
-      <h1 className="text-center my-4">Lista de Carros</h1>
+      <h1 className="text-center my-4">Imagens</h1>
 
 
       <Row>
-        {cars.map((car) => (
-          <Col key={car.id} md={4}> 
+        {produtos.map((produto) => (
+          <Col key={produto.id} md={4}> 
             <Card className="mb-4">
               <Card.Body>
                 
                 <Carousel>  
-                    {car?.CarrosxFotos?.map((foto) => (
+                    {produto?.Fotos?.map((foto) => (
                         <Carousel.Item key={foto.idFoto}>
-                        <img className="d-block w-100"src={foto.CaminhoImagem}/>
+                        <img
+                          className="d-block w-100"
+                          src={foto.imageUrl || FALLBACK_IMAGE}
+                          alt={`${produto.Descricao} - foto ${foto.idFoto}`}
+                          loading="lazy"
+                          onError={(event) => {
+                            event.currentTarget.src = FALLBACK_IMAGE;
+                          }}
+                        />
                         </Carousel.Item>
                     ))}
                 </Carousel>
 
-                <Card.Title>{car.Modelo}</Card.Title>
-                <Card.Text><strong>Marca:</strong> {car.Marca}</Card.Text>
-                <Card.Text><strong>Fabricação:</strong> {car.Fabricacao}</Card.Text>
-                <Card.Text><strong>Descrição:</strong> {car.Descricao}</Card.Text>
-                <Card.Text><strong>Valor:</strong> R${car.Valor.toFixed(2)}</Card.Text>
-                <Button variant="primary">Ver Mais</Button>
+                <Card.Text><strong>Descrição:</strong> {produto.Descricao}</Card.Text>
+                
               </Card.Body>
             </Card>
           </Col>
